@@ -12,7 +12,7 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 
 # 1. Data Loading & Preprocessing
 # Using strict relative paths as requested.
-data_path = '../data/d2c churn data package/'
+data_path = 'data/d2c_churn_data_package/'
 df = pd.read_csv(data_path + 'rfm_modeling_snapshot.csv')
 
 features = [

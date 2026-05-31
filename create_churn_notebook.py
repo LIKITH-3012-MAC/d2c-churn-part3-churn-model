@@ -18,7 +18,7 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score, confusion_matrix
 
-data_path = '../data/d2c churn data package/'"""
+data_path = 'data/d2c_churn_data_package/'"""
 
 text_data = """### 1. Data Loading & Preprocessing
 We use the pre-computed `rfm_modeling_snapshot.csv` which respects the snapshot date strictly."""

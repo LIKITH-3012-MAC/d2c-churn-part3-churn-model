@@ -1,30 +1,42 @@
-# Part 3: Churn Prediction Model & Model Card
+# Part 3: Predictive Churn Modeling
 
-## Project Overview
-This repository contains Part 3 of the D2C Customer Churn Intelligence & Retention API Capstone. The objective is to construct a predictive machine learning model to estimate the probability that a customer will churn in the next 60 days using RFM and behavioral features computed strictly prior to the `2025-09-30` snapshot date.
+Trains a RandomForest model to predict 60-day churn.
 
-## File Structure
-- `churn_model.ipynb`: Jupyter notebook containing data loading, preprocessing pipelines, model training (Logistic Regression Baseline vs. Random Forest Champion), and threshold tuning logic.
-- `model.pkl`: The serialized `scikit-learn` pipeline of the Champion model.
-- `metrics.json`: JSON output containing precision, recall, f1, ROC-AUC, accuracy, and the confusion matrix for the Champion model on the test split.
-- `model_card.md`: A standard ML Model Card detailing intended use, inputs, and a business justification for selecting a custom classification threshold to prioritize Recall.
-- `error_analysis.md`: Detailed analysis of 10 hypothetical customer edge cases (False Positives and False Negatives), investigating why the model failed and the associated business costs.
-- `requirements.txt`: Required Python dependencies.
+## 1. Repository Structure
+```
+.
+├── data/
+│   └── d2c_churn_data_package/
+│       ├── customers.csv
+│       ├── orders.csv
+│       ├── support_tickets.csv
+│       ├── rfm_modeling_snapshot.csv
+│       └── ...
+├── README.md
+├── requirements.txt
+└── (Notebooks and Scripts)
+```
 
-## Setup Instructions
-1. This project part is meant to be a standalone repository.
-2. Ensure Python 3.9+ is installed.
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. **Data Placement:** Place the original dataset package inside a `data/` folder one directory level above this repository, specifically at `../data/d2c churn data package/`.
-5. Open the Jupyter Notebook:
-   ```bash
-   jupyter notebook churn_model.ipynb
-   ```
+## 2. Dataset Location
+The original dataset package is securely bundled inside the repository under `data/d2c_churn_data_package/`. 
+All notebooks and scripts use relative paths to automatically load the data from this directory without requiring any modifications.
 
-## Model Overview
-- **Champion Model:** Random Forest Classifier
-- **Preprocessing:** One-hot encoding for categoricals, median-imputation and standardization for numericals.
-- **Evaluation Strategy:** We actively reduced the classification threshold from `0.50` to `0.40` to bias the model toward Recall. In the D2C space, failing to identify a churner (False Negative) results in the loss of their entire future LTV, whereas incorrectly offering a discount to a retained customer (False Positive) only costs a minor margin hit.
+## 3. Installation Command
+Create a virtual environment and install dependencies:
+```bash
+python -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+## 4. Run Command
+Execute the following to run this part:
+```bash
+python train_model.py
+# or
+jupyter notebook churn_model.ipynb
+```
+
+## 5. Expected Outputs
+Upon successful execution, you should expect:
+`model.pkl` (saved model artifact) and `metrics.json` (evaluation metrics).
